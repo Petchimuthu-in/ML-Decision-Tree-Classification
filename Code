@@ -1,0 +1,22 @@
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+
+df = pd.read_csv("loan_approval.csv")
+print(df)
+
+model = DecisionTreeClassifier(random_state=42)
+
+model.fit(df[["Income", "Credit_Score"]], df["Loan_Status"])
+
+print("Model trained successfully!")
+
+customer = pd.DataFrame({
+    "Income": [55000],
+    "Credit_Score": [720]
+})
+
+prediction = model.predict(customer)
+
+print("Customer Income: 55000")
+print("Credit Score: 720")
+print("Prediction:", prediction[0])
